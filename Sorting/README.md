@@ -24,7 +24,49 @@ private int[] ordenarPorInsercion(int[] datosParaClasificar) {
 
 ### Shell Sort
 
+```java
+private int[] ordenarPorShell(int[] datosParaClasificar) {
+	if(datosParaClasificar != null){
+		int j, inc;
+		int[] incrementos = new int[] { 3223, 358, 51, 10, 3, 1 };
+		for (int posIncrementoActual = 0; posIncrementoActual < incrementos.length; posIncrementoActual++) {
+			inc = incrementos[posIncrementoActual];
+			if (inc < (datosParaClasificar.length / 2)) {
+				for (int i = inc; i < datosParaClasificar.length; i++) {
+					j = i - inc;
+					while (j >= 0) {
+						if (datosParaClasificar[j] > datosParaClasificar[j + inc]) {
+							intercambiar(datosParaClasificar, j, j + inc);
+						}
+						j--;
+					}
+				}
+			}
+		}
+		return datosParaClasificar;
+	}
+	return null;
+}
+```
+
 ### Buble Sort
+
+```java
+private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
+	if(datosParaClasificar != null){
+		int n = datosParaClasificar.length - 1;
+		for (int i = 0; i <= n; i++) {
+			for (int j = n; j >= (i + 1); j--) {
+				if (datosParaClasificar[j] < datosParaClasificar[j - 1]) {
+					intercambiar(datosParaClasificar, j - 1, j);
+				}
+			}
+		}
+	}
+
+	return datosParaClasificar;
+}
+```
 
 ### Quick Sort O(n*log n)
 
