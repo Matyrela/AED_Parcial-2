@@ -1,5 +1,5 @@
-##UT7 y UT8 Grafos
+# UT7 y UT8 Grafos
 
-##Grafos Dirigidos
+## Grafos Dirigidos
 
-##Grafos no Dirigidos
+## Grafos no Dirigidos
