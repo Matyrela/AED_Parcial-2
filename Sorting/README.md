@@ -1,11 +1,11 @@
-##UT9 - Sort
+## UT9 - Sort
 
-###Shell Sort
+### Shell Sort
 
-###Por insercion
+### Por insercion
 
-###Buble Sort
+### Buble Sort
 
-###Quick Sort
+### Quick Sort
 
-###Heap Sort
+### Heap Sort
