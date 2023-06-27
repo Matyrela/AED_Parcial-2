@@ -8,18 +8,18 @@ Un metodo facilitador seria por ejemplo añadir como primer elemento de este arr
 
 ```java
 private int[] ordenarPorInsercion(int[] datosParaClasificar) {
-		if (datosParaClasificar != null) {
-			for (int i = 1; i < datosParaClasificar.length; i++) {
-				int j = i - 1;
-				while ((j >= 0) && (datosParaClasificar[j+1] < datosParaClasificar[j])) {
-					intercambiar(datosParaClasificar, j, j + 1);
-					j--;
-				}
+	if (datosParaClasificar != null) {
+		for (int i = 1; i < datosParaClasificar.length; i++) {
+			int j = i - 1;
+			while ((j >= 0) && (datosParaClasificar[j+1] < datosParaClasificar[j])) {
+				intercambiar(datosParaClasificar, j, j + 1);
+				j--;
 			}
-			return datosParaClasificar;
 		}
-		return null;
+		return datosParaClasificar;
 	}
+	return null;
+}
 ```
 
 ### Shell Sort
