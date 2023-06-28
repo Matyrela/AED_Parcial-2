@@ -2,6 +2,8 @@
 
 # Grafos Dirigidos
 ## Método bea (busqueda en amplitud)
+Se recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo.
+Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo. 
 ![bea](assets/BusquedaEnAmplitud.png)
 ***
 - Método a nivel del grafo
@@ -74,6 +76,7 @@ public void bpf(Collection<TVertice> visitados) {
     }
 }
 ```
+[BEA y BPF](https://www.encora.com/es/blog/dfs-vs-bfs)
 
 # Método todos los caminos
 Método a nivel del grafo
