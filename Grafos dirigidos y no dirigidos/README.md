@@ -4,7 +4,7 @@
 
 ## Método bpf (busqueda por profundidad)
 ![bpf](assets/BusquedaProfundidad.png)
-<hr>
+<hr></hr>
 - Método a nivel del grafo
 ```java
 @Override
