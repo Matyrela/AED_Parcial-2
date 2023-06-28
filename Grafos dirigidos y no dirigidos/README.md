@@ -113,7 +113,62 @@ public TCaminos todosLosCaminos(Comparable etVertDest, TCamino caminoPrevio, TCa
     return todosLosCaminos;
 }
 ```
+## Algoritmo de FLOYD
+```java
+@Override
+    public Double[][] floyd() {
+        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(getVertices());
+        int capacidad = matriz[0].length;
+        Double[][] matrizFloyd = new Double[capacidad][capacidad];
+        for (int i = 0; i < capacidad; i++){
+            for (int j = 0; j < capacidad; j++){
+                if (i != j){
+                    matrizFloyd[i][j] = (double) (j + 1);
+                }
+            }
+        }
+        for (int k = 0; k < capacidad; k++){
+            for (int i = 0; i < capacidad; i++){
+                for (int j = 0; j < capacidad; j++){
+                    if(matriz[i][k] + matriz[k][j] < matriz[i][j]){
+                        matriz[i][j] = matriz[i][k] + matriz[k][j];
+                        matrizFloyd[i][j] = matrizFloyd[i][k];
+                    }
+                }
+            }
+        }
+        return matrizFloyd;
+    }
+```
 
+## Algoritmo de WARSHALL
+```java
+public boolean[][] warshall() {
+        Double[][] matrizCostos = UtilGrafos.obtenerMatrizCostos(getVertices());
+        boolean[][] matrizWarshall = new boolean[matrizCostos.length][matrizCostos.length];
+        for (int i = 0; i < matrizCostos.length; i++) {
+            for (int j = 0; j < matrizCostos.length; j++) {
+                matrizWarshall[i][j] = false;
+
+                if (i != j && matrizCostos[i][j] != Integer.MAX_VALUE) {
+                    matrizWarshall[i][j] = true;
+                }
+            }
+        }
+        for (int k = 0; k < matrizWarshall.length; k++) {
+            for (int i = 0; i < matrizWarshall.length; i++) {
+                for (int j = 0; j < matrizWarshall.length; j++) {
+                    if ((i != k) && (k != j) && (i != j)) {
+                        if (!matrizWarshall[i][j]) {
+                            matrizWarshall[i][j] = matrizWarshall[i][k] && matrizWarshall[k][j];
+                        }
+                    }
+                }
+            }
+        }
+        return matrizWarshall;
+    }
+```
 # Grafos no Dirigidos
 
 when.
