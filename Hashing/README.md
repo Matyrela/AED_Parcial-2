@@ -40,3 +40,19 @@
 - marcamos la celda como borrada (borrado≠libre)
 - al buscar, si encontramos una celda marcada como borrada continuamos la búsqueda
 - al añadir, puede ocuparse una celda marcada como borrada
+
+# Colecciones
+
+##Set (clave)
+-HashSet
+-TreeSet
+-LinkedHashSet
+
+##Map (clave-valor)
+-HashMap
+-TreeMap
+-LinkedHashMap
+
+##List
+-ArrayList
+-LinkedList
