@@ -2,7 +2,8 @@
 
 # Grafos Dirigidos
 
-## Método BPF (busqueda por profundidad)
+## Método bpf (busqueda por profundidad)
+![bpf](assets/BusquedaProfundidad.png)
 - Método a nivel del grafo
 ```java
 @Override
