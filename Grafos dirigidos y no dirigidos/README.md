@@ -4,8 +4,41 @@
 ## Método bea (busqueda en amplitud)
 ![bea](assets/BusquedaEnAmplitud.png)
 ***
+- Método a nivel del grafo
 ```java
-public void bea(){}
+@Override
+public Collection<TVertice> bea(Comparable etiquetaOrigen) {
+   if(this.getVertices().get(etiquetaOrigen) != null){
+        LinkedList<TVertice> recorrido = new LinkedList<>();
+        TVertice v = this.getVertices().get(etiquetaOrigen);
+        v.bea(recorrido);
+        return recorrido;
+    }
+    return null;
+}
+```
+- Método a nivel del vértice
+```java
+@Override
+public void bea(Collection<TVertice> visitados) {
+    Queue<TVertice> queue = new LinkedList<>();
+    this.setVisitado(true); // Lo visito
+    queue.add(this);
+    visitados.add(this); // Lo agrego a visitados
+
+    while(!queue.isEmpty()){
+        TVertice x = queue.poll();
+        LinkedList<TAdyacencia> adyacencias = x.getAdyacentes();
+        for(TAdyacencia y : adyacencias){
+            TVertice j = y.getDestino();
+            if(!j.getVisitado()){
+                j.setVisitado(true);
+                queue.add(j);
+                visitados.add(j);
+            }
+        }
+    }
+}
 ```
 ## Método bpf (busqueda por profundidad)
 - Se puede emplear el mismo algoritmo definido para *grafos dirigidos y no dirigidos*.
