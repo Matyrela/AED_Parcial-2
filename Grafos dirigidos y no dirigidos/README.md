@@ -169,6 +169,31 @@ public boolean[][] warshall() {
         return matrizWarshall;
     }
 ```
+## Bosque Abarcador
+
+Es un conjunto de árboles generados a partir del recorrido de un grafo.
+- Bosque abarcador en profundidad: utiliza el algoritmo de búsqueda en profundidad.
+- Cada árbol del bosque se formara con vértices de digráfo y aquellos arcos que en el recorrido llevan a vértices sin visitar.
+
+### Tipos de Arcos
+
+- Arcos de árbol: son los que forman el árbol.
+- Arcos de avance: van de un vértice v a un vértice w que es descendiente propio de v en el árbol abarcador.
+- Arcos de retroceso: van de un vértice v a un w que es antecesor de v en el árbol abarcador.
+- Arcos cruzados: van de un vértice v a uno w que no es ancestro ni descendiente.
+
+- Un arco no abarcador que va de un vértice a un descendiente propio se llama arco de avance.
+
+## Grafos dirigidos Acíclicos
+
+- Ciclo: Camino simple de longitud al menos 1 que empieza donde termina.
+- Un grafo dirigido acíclico(gda) es un grafo dirigido sin ciclos.
+
+### Prueba de Aciclicidad
+- Se utiliza una búsqueda en profundidad para ver si un grafo es acíclico.
+- Si se encuentra un arco de retroceso durante la búsqueda en profundidad de G, el grafo tiene un ciclo.
+- Si, al contrario, un grafo dirigido tiene un ciclo, entonces siempre habrá un arco de retroceso en la búsqueda en profundidad del grafo.
+  
 # Grafos no Dirigidos
 
 ## Algoritmo de PRIM
