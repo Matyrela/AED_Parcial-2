@@ -32,7 +32,7 @@ Método a nivel del vértice
     }
 ```
 
-#Método todos los caminos
+# Método todos los caminos
 Método a nivel del grafo
 ```java
 @Override
