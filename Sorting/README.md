@@ -71,5 +71,5 @@ private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 ## Quick Sort - O(n^2)
 Si se elije un buen pivote podría ser el más eficiente con un tiempo de ejecucion de O(n log n), pero en el peor de los casos con una mala elección de pivote tendría un tiempo de ejecución de O(n^2).
 
-## Heap Sort O - (n log n)
+## Heap Sort - O(n log n)
 Tiene un tiempo de ejecución de O(n log n) en *TODOS* los casos. 
