@@ -68,8 +68,16 @@ private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 }
 ```
 
+
 ## Quick Sort - O(n^1.26)
 Si se elije un buen pivote podría ser el más eficiente con un tiempo de ejecucion de O(n log n), pero en el peor de los casos con una mala elección de pivote tendría un tiempo de ejecución de O(n^1.26).
+Elección del pivote:
+```java
+public int obtenerClavePivote(int i, int j){
+	return new Random().nextInt(i, j);
+}					
+```
+
 
 ## Selection Sort - O(n^2)
 
