@@ -3,7 +3,7 @@
 # Grafos Dirigidos
 
 ## Método BPF (busqueda por profundidad)
-Método a nivel del grafo
+- Método a nivel del grafo
 ```java
 @Override
 public void bpf(Collection<TVertice> visitados) {
@@ -17,8 +17,7 @@ public void bpf(Collection<TVertice> visitados) {
     }
 }
 ```
-
-Método a nivel del vértice 
+- Método a nivel del vértice 
 ```java
 @Override
 public void bpf(Collection<TVertice> visitados) {
