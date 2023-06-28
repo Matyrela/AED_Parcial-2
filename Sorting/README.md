@@ -1,6 +1,6 @@
 # UT9 - Sort
 
-## Por insercion O(n^2)
+## Por insercion - O(n^2)
 En el mejor de los casos tiene un tiempo de ejecución de O(n), pero en el peor de los casos O(n^2)
 El metodo por insercion funciona de tal forma que en el i-esimo recorrido se inserta el i-esimo elemento en el lugar correcto, resumiendo si se itera sobre el tercer elemento del un array ese tercer elemento va a ponerse en su lugar en los espacios anteriores.
 
@@ -22,7 +22,7 @@ private int[] ordenarPorInsercion(int[] datosParaClasificar) {
 }
 ```
 
-## Shell Sort O(n^2)
+## Shell Sort - O(n^2)
 El tiempo de ejecución promedio es O(n log n), siempre y cuando haya una buena elección de incrementos.
 ```java
 private int[] ordenarPorShell(int[] datosParaClasificar) {
@@ -49,7 +49,7 @@ private int[] ordenarPorShell(int[] datosParaClasificar) {
 }
 ```
 
-## Bubble Sort O(n^2)
+## Bubble Sort - O(n^2)
 En el mejor de los casos tiene un tiempo de ejecución de O(n log n), pero en el peor de los casos tiene O(n^2).
 ```java
 private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
@@ -68,8 +68,8 @@ private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 }
 ```
 
-## Quick Sort O(n^2)
+## Quick Sort - O(n^2)
 Si se elije un buen pivote podría ser el más eficiente con un tiempo de ejecucion de O(n log n), pero en el peor de los casos con una mala elección de pivote tendría un tiempo de ejecución de O(n^2).
 
-## Heap Sort O(n log n)
+## Heap Sort O - (n log n)
 Tiene un tiempo de ejecución de O(n log n) en *TODOS* los casos. 
