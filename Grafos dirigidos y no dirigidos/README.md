@@ -1,8 +1,16 @@
 # UT7 y UT8 Grafos
 
 # Grafos Dirigidos
-
+## Método bea (busqueda en amplitud)
+![bea](assets/BusquedaEnAmplitud.png)
+***
+```java
+public void bea(){}
+```
 ## Método bpf (busqueda por profundidad)
+- Se puede emplear el mismo algoritmo definido para *grafos dirigidos y no dirigidos*.
+- En este caso, si el grafo es conexo, de la búsqueda en profundidad se obtiene un sólo árbol
+- Para grafos no dirigidos, hay dos clases de arcos: de árbol y de retroceso.
 ![bpf](assets/BusquedaProfundidad.png)
 ***
 - Método a nivel del grafo
