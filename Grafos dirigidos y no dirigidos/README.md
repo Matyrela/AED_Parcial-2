@@ -238,3 +238,13 @@ public boolean[][] warshall() {
         return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
     }
 ```
+
+## Estan Conectados
+```java
+public boolean estanConectados(Comparable vertice1, Comparable vertice2){
+        TVertice verticeGrafo1 = vertices.get(vertice1);
+        TVertice verticeGrafo2 = vertices.get(vertice2);
+
+        return verticeGrafo1.estaConectado(verticeGrafo2) || verticeGrafo2.estaConectado(verticeGrafo1);
+    }
+```
