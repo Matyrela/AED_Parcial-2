@@ -40,9 +40,9 @@
 - Es un proceso muy difícil a menos que se use encadenamiento directo.
 
 ### Solución: Borrado perezoso
-- marcamos la celda como borrada (borrado≠libre)
-- al buscar, si encontramos una celda marcada como borrada continuamos la búsqueda
-- al añadir, puede ocuparse una celda marcada como borrada
+- marcamos la celda como borrada (borrado == libre).
+- al buscar, si encontramos una celda marcada como borrada continuamos la búsqueda.
+- al añadir, puede ocuparse una celda marcada como borrada y sobreescribir el dato.
 
 # Colecciones
 
