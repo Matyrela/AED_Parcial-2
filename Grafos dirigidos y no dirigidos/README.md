@@ -204,3 +204,37 @@ public boolean[][] warshall() {
         return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
     }
 ```
+
+## Algoritmo de Kruskal
+```java
+@Override
+    public TGrafoNoDirigido Prim() {
+        Collection<Comparable> V = new ArrayList<>();
+        Collection<Comparable> U = new ArrayList<>();
+        Collection<TArista> AristasAAM = new ArrayList<>();
+        double costoPrim = 0;
+
+        for (TVertice vertice : this.getVertices().values()) {
+                V.add(vertice.getEtiqueta());
+        }
+
+        U.add(V.iterator().next());
+        V.remove(V.iterator().next());
+
+        while (V.size() != 0) {
+            TArista tempArista = this.lasAristas.buscarMin(U, V);
+            AristasAAM.add(tempArista);
+            V.remove(tempArista.getEtiquetaDestino());
+            U.add(tempArista.getEtiquetaDestino());
+            costoPrim = costoPrim + tempArista.getCosto();
+        }
+
+        Collection<TVertice> VerticesSeleccionados = new ArrayList<>();
+
+        for (Comparable vertice : U) {
+            VerticesSeleccionados.add(new TVertice(vertice));
+        }
+
+        return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
+    }
+```
