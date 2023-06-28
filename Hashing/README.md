@@ -59,3 +59,5 @@
 ## List
 - ArrayList
 - LinkedList
+
+[ARRIBA](#hashing)
