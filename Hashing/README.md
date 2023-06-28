@@ -6,7 +6,7 @@
 
 ## Tratamiento de colisiones
 
-1. [Sondeo lineal](###Sondeo Lineal)
+1. [Sondeo lineal](#Sondeo Lineal)
 2. Sondeo cuadratico
 3. Doble Hashing
 4. Encadenamiento simple
