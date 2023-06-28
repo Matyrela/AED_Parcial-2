@@ -1,6 +1,6 @@
-## UT9 - Sort
+# UT9 - Sort
 
-### Por insercion O(n2)
+## Por insercion O(n2)
 
 El metodo por insercion funciona de tal forma que en el i-esimo recorrido se inserta el i-esimo elemento en el lugar correcto, resumiendo si se itera sobre el tercer elemento del un array ese tercer elemento va a ponerse en su lugar en los espacios anteriores.
 
@@ -22,7 +22,7 @@ private int[] ordenarPorInsercion(int[] datosParaClasificar) {
 }
 ```
 
-### Shell Sort
+## Shell Sort
 
 ```java
 private int[] ordenarPorShell(int[] datosParaClasificar) {
@@ -49,7 +49,7 @@ private int[] ordenarPorShell(int[] datosParaClasificar) {
 }
 ```
 
-### Buble Sort
+## Buble Sort
 
 ```java
 private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
@@ -68,6 +68,6 @@ private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 }
 ```
 
-### Quick Sort O(n*log n)
+## Quick Sort O(n*log n)
 
-### Heap Sort
+## Heap Sort
