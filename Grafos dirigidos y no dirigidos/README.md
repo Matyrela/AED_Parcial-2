@@ -1,8 +1,8 @@
 # UT7 y UT8 Grafos
 
-## Grafos Dirigidos
+# Grafos Dirigidos
 
-# Método BPF (busqueda por profundidad)
+## Método BPF (busqueda por profundidad)
 Método a nivel del grafo
 ```java
 @Override
@@ -69,6 +69,6 @@ public TCaminos todosLosCaminos(Comparable etVertDest, TCamino caminoPrevio, TCa
 }
 ```
 
-## Grafos no Dirigidos
+# Grafos no Dirigidos
 
 when.
