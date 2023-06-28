@@ -6,10 +6,10 @@
 
 ## Tratamiento de colisiones
 
-1. [Sondeo lineal](#sondeo-lineal)
-2. Sondeo cuadratico
-3. Doble Hashing
-4. Encadenamiento simple
+1. [Sondeo Lineal](#sondeo-lineal)
+2. [Sondeo Cuadratico](#sondeo-cuadratico)
+3. [Doble Hashing](#doble-hashing)
+4. [Encadenamiento Simple](#encadenamiento-simple)
 
 ## Direccionamiento Abierto
 
@@ -28,9 +28,13 @@
 -  Puede requerir más cálculos que las otras formas de sondeo.
 
 ## Direccionamiento Cerrado
+
+### Encadenamiento Simple
 - Cada casilla en el array referencia a una lista con los registros insertados que colisionan en dicha casilla.
 - Consiste en encontrar la casilla correcta y agregar al final de la lista correspondiente.
 - El borrado consiste en buscar y quitar de la lista.
+
+---
 
 ## Eliminar de la tabla
 - Es un proceso muy difícil a menos que se use encadenamiento directo.
