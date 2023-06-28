@@ -43,16 +43,16 @@
 
 # Colecciones
 
-##Set (clave)
--HashSet
--TreeSet
--LinkedHashSet
+## Set (clave)
+- HashSet
+- TreeSet
+- LinkedHashSet
 
-##Map (clave-valor)
--HashMap
--TreeMap
--LinkedHashMap
+## Map (clave-valor)
+- HashMap
+- TreeMap
+- LinkedHashMap
 
-##List
--ArrayList
--LinkedList
+## List
+- ArrayList
+- LinkedList
