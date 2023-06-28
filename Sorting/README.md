@@ -1,7 +1,7 @@
 # UT9 - Sort
 
 ## Por insercion - O(n^2)
-En el mejor de los casos tiene un tiempo de ejecución de O(n), pero en el peor de los casos O(n^2)
+En el mejor de los casos tiene un tiempo de ejecución de O(n) siempre y cuando el array este ordenado en la primera iteracion, pero en el peor de los casos el tiempo de ejecucion O(n^2).
 El metodo por insercion funciona de tal forma que en el i-esimo recorrido se inserta el i-esimo elemento en el lugar correcto, resumiendo si se itera sobre el tercer elemento del un array ese tercer elemento va a ponerse en su lugar en los espacios anteriores.
 
 Un metodo facilitador seria por ejemplo añadir como primer elemento de este array un numero menor a los demas numeros del array.
@@ -68,8 +68,8 @@ private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 }
 ```
 
-## Quick Sort - O(n^2)
-Si se elije un buen pivote podría ser el más eficiente con un tiempo de ejecucion de O(n log n), pero en el peor de los casos con una mala elección de pivote tendría un tiempo de ejecución de O(n^2).
+## Quick Sort - O(n^1.26)
+Si se elije un buen pivote podría ser el más eficiente con un tiempo de ejecucion de O(n log n), pero en el peor de los casos con una mala elección de pivote tendría un tiempo de ejecución de O(n^1.26).
 
 ## Selection Sort - O(n log n)
 
