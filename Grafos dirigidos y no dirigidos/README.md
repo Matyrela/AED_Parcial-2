@@ -196,7 +196,18 @@ Es un conjunto de árboles generados a partir del recorrido de un grafo.
   
 # Grafos no Dirigidos
 
-## Algoritmo de PRIM
+# Arcos
+
+- Para grafos no dirigidos, hay dos clases de arcos: de árbol y de retroceso.
+- En grafos no dirigidos no existe distinción entre las aristas de retroceso y las de avance, se denominarán arcos de retroceso.
+  
+## Propiedad AAM (Árbol Abarcador de costo Mínimo)
+
+- Si (u,v) es una arista de costo mínimo tal que u pertenece a U y v pertenece a V-U, existe un AAM que incluye a (u,v) entre sus aristas.
+Dos algoritmos hacen uso de esta propiedad: Prim y Kruskal.
+
+## Algoritmo de PRIM - O(n^2)
+
 ```java
 @Override
     public TGrafoNoDirigido Prim() {
@@ -230,7 +241,8 @@ Es un conjunto de árboles generados a partir del recorrido de un grafo.
     }
 ```
 
-## Algoritmo de Kruskal
+## Algoritmo de Kruskal - O(a.log a)
+
 ```java
 @Override
     public TGrafoNoDirigido Prim() {
