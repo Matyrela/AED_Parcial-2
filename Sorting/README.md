@@ -137,3 +137,46 @@ public void selectionSort(int[] arr) {
 
 ## Heap Sort - O(n log n)
 Tiene un tiempo de ejecución de O(n log n) en *TODOS* los casos. 
+
+```java
+private void armaHeap(int[] datosParaClasificar, int primero, int ultimo) {
+		if (primero < ultimo) {
+			int actual = primero;
+			while (actual <= ultimo / 2) {
+				if (ultimo == 2 * actual) { //r tiene un hijo solo
+					if (datosParaClasificar[actual] > datosParaClasificar[actual * 2]) {
+						intercambiar(datosParaClasificar, actual, 2 * actual);
+					}
+					actual = ultimo;
+				} else { //r tiene 2 hijos
+					int posicionIntercambio = 0;
+					if (datosParaClasificar[2 * actual] > datosParaClasificar[2 * actual + 1]) {
+						posicionIntercambio = 2 * actual + 1;
+					} else {
+						posicionIntercambio = 2 * actual;
+					}
+					if (datosParaClasificar[actual] > datosParaClasificar[posicionIntercambio]) {
+						intercambiar(datosParaClasificar, actual, posicionIntercambio);
+						actual = posicionIntercambio;
+					} else {
+						actual = ultimo;
+					}
+				}
+			}
+		}
+	}
+
+private int[] ordenarPorHeapSort(int[] datosParaClasificar) {
+		System.out.println("");
+		for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) { //Armo el heap inicial de n-1 div 2 hasta 0
+			System.out.println(i);
+			armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1);
+		}
+			
+		for (int i = datosParaClasificar.length - 1; i > 0; i--) {
+			intercambiar(datosParaClasificar, 0, i);
+			armaHeap(datosParaClasificar, 0, i - 1);
+		}
+		return datosParaClasificar;
+	}
+```
