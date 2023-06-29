@@ -1,6 +1,48 @@
 # UT7 y UT8 Grafos
 
 # Grafos Dirigidos
+## Método centro del gráfo:
+```java
+@Override
+    public Comparable centroDelGrafo() {
+        Comparable res = null;
+        Double minExc = Double.MAX_VALUE;
+        for (Comparable vert : vertices.keySet()){
+            Double exc = obtenerExcentricidad(vert);
+            if (exc < minExc && exc != -1){
+                res = vert;
+                minExc = exc;
+            }
+        }
+        return res;
+    }
+```
+Método adyascente obtener excentricidad
+```java
+ @Override
+    public Double obtenerExcentricidad(Comparable etiquetaVertice) {
+        Double[][] aux = this.floyd();
+        int index = 0;
+        for (Comparable vert : vertices.keySet()){
+            if(vert.equals(etiquetaVertice)){
+                break;
+            }
+            index++;
+        }
+        
+        Double valMax = 0.0;
+        for(int i = 0; i < vertices.keySet().size(); i++){
+            if (aux[i][index] != Double.MAX_VALUE && aux[i][index] > valMax){
+                valMax = aux[i][index];
+            }
+        }
+        if (valMax == 0){
+            return -1.0;
+        }else{
+            return valMax;
+        }
+    }
+```   
 ## Método bea (busqueda en amplitud)
 Se recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo.
 Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo. 
@@ -112,7 +154,54 @@ public TCaminos todosLosCaminos(Comparable etVertDest, TCamino caminoPrevio, TCa
     visitado = false;
     return todosLosCaminos;
 }
+
 ```
+# Método sort topológico
+Método a nivel del grafo
+```java
+public LinkedList<TVertice> sortTopologico(Comparable vertice) {
+        //vertice tiene que ser final, no puede tener vertices incidentes
+        LinkedList<TVertice> lista = new LinkedList<TVertice>();
+        desvisitarVertices();
+        LinkedList<TVertice> verticesList = new LinkedList<TVertice>();
+        LinkedList<TArista> aristasList = new LinkedList<TArista>();
+        //invertir aristas
+        for (TVertice v : this.getVertices().values()) {
+            verticesList.add(new TVertice(v.getEtiqueta()));
+            for (Object a : v.getAdyacentes()) {
+                TAdyacencia ad = (TAdyacencia) a;
+                aristasList.add(new TArista(ad.getEtiqueta(), v.getEtiqueta(), ad.getCosto()));
+            }
+        }
+
+        TGrafoDirigido gd = new TGrafoDirigido(verticesList, aristasList);
+
+        TVertice vert = gd.buscarVertice(vertice);
+        if (vert != null) {
+            vert.sortTopologico(lista);
+            for (Map.Entry<Comparable, TVertice> entry : gd.getVertices().entrySet()) {
+                TVertice v = entry.getValue();
+                if (!v.getVisitado()) {
+                    v.sortTopologico(lista);
+                }
+            }
+        }
+        return lista;
+    }
+```
+Método a nivel del vértice
+```java
+public void sortTopologico(LinkedList<TVertice> lista) {
+        this.setVisitado(true);
+        for (TAdyacencia ady : this.adyacentes) {
+            if (!ady.getDestino().getVisitado()) {
+                ady.getDestino().sortTopologico(lista);
+            }
+        }
+        lista.add(this);
+    }
+```
+
 ## Algoritmo de FLOYD
 ```java
 @Override
