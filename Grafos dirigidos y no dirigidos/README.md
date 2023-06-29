@@ -200,6 +200,12 @@ Es un conjunto de árboles generados a partir del recorrido de un grafo.
 
 - Para grafos no dirigidos, hay dos clases de arcos: de árbol y de retroceso.
 - En grafos no dirigidos no existe distinción entre las aristas de retroceso y las de avance, se denominarán arcos de retroceso.
+
+# Puntos de articulación
+- Un punto de articulación es un vértice v tal que, cuando se elimina, junto con todas las aristas incidentes sobre él, se divide un componente conexo en dos o más partes.
+• A un grafo sin puntos de articulación se le llama “grafo biconexo”.
+• Un grafo tiene conectividad k si la eliminación de k-1 vértices cualesquiera no lo desconecta.
+• La búsqueda en profundidad es muy útil para encontrar los componentes biconexos de un grafo.
   
 ## Propiedad AAM (Árbol Abarcador de costo Mínimo)
 
