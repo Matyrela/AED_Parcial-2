@@ -77,6 +77,18 @@ public int obtenerClavePivote(int i, int j){
 	return new Random().nextInt(i, j);
 }					
 ```
+```java
+private int[] ordenarPorQuickSort(int[] datosParaClasificar, int i, int j) {
+		if (i < j) {
+			int iPivote = obtenerClavePivote(datosParaClasificar, i, j);
+			int pivote = datosParaClasificar[iPivote];
+			int k = particion(datosParaClasificar, i, j, pivote);
+			ordenarPorQuickSort(datosParaClasificar, i, k - 1);
+			ordenarPorQuickSort(datosParaClasificar, k, j);
+		}
+		return datosParaClasificar;
+	}
+```
 
 
 ## Selection Sort - O(n^2)
