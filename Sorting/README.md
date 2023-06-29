@@ -50,6 +50,8 @@ private int[] ordenarPorShell(int[] datosParaClasificar) {
 ```
 
 ## Bubble Sort - O(n^2)
+
+Compara cada par de elementos adyacentes y los intercambia si el de la izquierda es mayor que el de la derecha y se hace varias veces hasta que todo este ordenado.
 En el mejor de los casos tiene un tiempo de ejecución de O(n log n), pero en el peor de los casos tiene O(n^2).
 ```java
 private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
@@ -112,6 +114,26 @@ private int[] ordenarPorQuickSort(int[] datosParaClasificar, int i, int j) {
 
 
 ## Selection Sort - O(n^2)
+
+El array se divide en dos partes, la ordenada y la no ordenada. Al inicio la ordenada está vacía y la no ordenada es todo el array. En cada paso el algoritmo busca el elemento mínimo de la parte desordenada y la agrega al final de la ordenada. Cuando la lista no ordenada se vacía se detiene. 
+
+```java
+public void selectionSort(int[] arr) {
+      int i, j, minIndex, tmp;
+      int n = arr.length;
+      for (i = 0; i < n - 1; i++) {
+            minIndex = i;
+            for (j = i + 1; j < n; j++)
+                  if (arr[j] < arr[minIndex])
+                        minIndex = j;
+            if (minIndex != i) {
+                  tmp = arr[i];
+                  arr[i] = arr[minIndex];
+                  arr[minIndex] = tmp;
+            }
+      }
+}
+```
 
 ## Heap Sort - O(n log n)
 Tiene un tiempo de ejecución de O(n log n) en *TODOS* los casos. 
