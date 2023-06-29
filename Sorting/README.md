@@ -77,6 +77,26 @@ public int obtenerClavePivote(int i, int j){
 	return new Random().nextInt(i, j);
 }					
 ```
+Método auxiliar partición
+```java
+private int particion(int[] arreglo, int izq, int der, int pivote) {
+		while (izq <= der) {
+			while (arreglo[izq] < pivote) {
+				izq++;
+			}
+			while (arreglo[der] > pivote) {
+				der--;
+			}
+			if (izq <= der) {
+				intercambiar(arreglo, izq, der);
+				izq++;
+				der--;
+			}
+		}
+		return izq;
+	}
+```
+Quicksort:
 ```java
 private int[] ordenarPorQuickSort(int[] datosParaClasificar, int i, int j) {
 		if (i < j) {
