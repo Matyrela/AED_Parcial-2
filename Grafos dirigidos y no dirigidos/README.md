@@ -93,15 +93,14 @@ public void bea(Collection<TVertice> visitados) {
 - Método a nivel del grafo
 ```java
 @Override
-public void bpf(Collection<TVertice> visitados) {
-    setVisitado(true);
-    visitados.add(this);
-    for (TAdyacencia adyacente : adyacentes) {
-        TVertice vertAdy = adyacente.getDestino();
-        if (!vertAdy.getVisitado()) {
-            vertAdy.bpf(visitados);
+    public LinkedList<TVertice> bpf(Comparable etiquetaOrigen) {
+        desvisitarVertices();
+        LinkedList<TVertice> resultado = new LinkedList();
+        TVertice origen = vertices.get(etiquetaOrigen);
+        if (origen != null){
+            origen.bpf(resultado);
         }
-    }
+        return resultado;
 }
 ```
 - Método a nivel del vértice 
