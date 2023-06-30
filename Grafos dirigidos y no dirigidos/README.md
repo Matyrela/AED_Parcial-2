@@ -52,7 +52,8 @@ Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacente
 ```java
 @Override
 public Collection<TVertice> bea(Comparable etiquetaOrigen) {
-   if(this.getVertices().get(etiquetaOrigen) != null){
+    desvisitarVertices();
+    if(this.getVertices().get(etiquetaOrigen) != null){
         LinkedList<TVertice> recorrido = new LinkedList<>();
         TVertice v = this.getVertices().get(etiquetaOrigen);
         v.bea(recorrido);
@@ -339,34 +340,34 @@ Dos algoritmos hacen uso de esta propiedad: Prim y Kruskal.
 
 ```java
 @Override
-    public TGrafoNoDirigido Prim() {
-        Collection<Comparable> V = new ArrayList<>();
-        Collection<Comparable> U = new ArrayList<>();
-        Collection<TArista> AristasAAM = new ArrayList<>();
-        double costoPrim = 0;
+    public TGrafoNoDirigido Kruskal() {
+        TGrafoNoDirigido AAM = new TGrafoNoDirigido(getVertices().values(),new TAristas());
+        var aristasDesordenadas = lasAristas;
+        aristasDesordenadas.sort((TArista a1, TArista a2) -> {
+            if (a1.costo < a2.costo){
+                return -1;
+            } else if(a1.costo > a2.costo){
+                return 1;
+            } else{
+                return 0;
+            }
+        });;
+        TAristas aristasOrdenadas = new TAristas();
+        aristasOrdenadas.addAll(aristasDesordenadas);
+        int aristasAgregadas = 0;
 
-        for (TVertice vertice : this.getVertices().values()) {
-                V.add(vertice.getEtiqueta());
+        while (aristasAgregadas != getVertices().size() - 1){
+            TArista aristaMin = aristasOrdenadas.removeFirst();
+            TVertice verticeOrigen = AAM.getVertices().get(aristaMin.getEtiquetaOrigen());
+            TVertice verticeDestino = AAM.getVertices().get(aristaMin.getEtiquetaDestino());
+            if (!AAM.estanConectados(verticeOrigen.getEtiqueta(), verticeDestino.getEtiqueta())){
+                AAM.insertarArista(aristaMin);
+                AAM.getLasAristas().add(aristaMin);
+                AAM.getLasAristas().add(aristaMin.aristaInversa());
+                aristasAgregadas++;
+            }
         }
-
-        U.add(V.iterator().next());
-        V.remove(V.iterator().next());
-
-        while (V.size() != 0) {
-            TArista tempArista = this.lasAristas.buscarMin(U, V);
-            AristasAAM.add(tempArista);
-            V.remove(tempArista.getEtiquetaDestino());
-            U.add(tempArista.getEtiquetaDestino());
-            costoPrim = costoPrim + tempArista.getCosto();
-        }
-
-        Collection<TVertice> VerticesSeleccionados = new ArrayList<>();
-
-        for (Comparable vertice : U) {
-            VerticesSeleccionados.add(new TVertice(vertice));
-        }
-
-        return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
+        return AAM;
     }
 ```
 
