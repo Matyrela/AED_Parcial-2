@@ -374,11 +374,24 @@ public void bea(Collection<TVertice> visitados) {
 ```
 
 ## Estan Conectados
+Grafo
 ```java
 public boolean estanConectados(Comparable vertice1, Comparable vertice2){
         TVertice verticeGrafo1 = vertices.get(vertice1);
         TVertice verticeGrafo2 = vertices.get(vertice2);
 
         return verticeGrafo1.estaConectado(verticeGrafo2) || verticeGrafo2.estaConectado(verticeGrafo1);
+    }
+```
+
+Vertice
+```java
+public boolean estaConectado(TVertice vertice2) {
+        for (TAdyacencia adyacente : adyacentes) {
+            if (adyacente.getDestino().getEtiqueta().compareTo(vertice2.getEtiqueta()) == 0){
+                return true;
+            }
+        }
+        return false;
     }
 ```
