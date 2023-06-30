@@ -52,7 +52,8 @@ Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacente
 ```java
 @Override
 public Collection<TVertice> bea(Comparable etiquetaOrigen) {
-   if(this.getVertices().get(etiquetaOrigen) != null){
+    desvisitarVertices();
+    if(this.getVertices().get(etiquetaOrigen) != null){
         LinkedList<TVertice> recorrido = new LinkedList<>();
         TVertice v = this.getVertices().get(etiquetaOrigen);
         v.bea(recorrido);
