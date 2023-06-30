@@ -162,66 +162,31 @@ public class TVertice<T> implements IVertice {
         }
     }
 
-    public void getArticulaciones(Collection<TVertice> res) {
+    public void getArticulaciones(Collection<TVertice> art, int[] cont){
+        cont[0] ++;
+        this.valBP = cont[0];
+        this.valBajo = cont[0];
+        LinkedList<TVertice> hijos = new LinkedList<>();
         this.setVisitado(true);
-        this.valBP = 1;
-        for (TAdyacencia ady : this.adyacentes) {
-            TVertice dest = ady.getDestino();
-            if (!dest.getVisitado()) {
-                dest.setVisitado(true);
-                dest.getArticulaciones(res, valBP);
-            }
-        }
-        this.valBajo = this.valBP;
-        for (TAdyacencia ady : this.adyacentes) {
-            TVertice dest = ady.getDestino();
-            if (this.valBP >= dest.getValBajo()) {
-                if (this.valBajo > dest.getValBajo()) {
-                    this.valBajo = dest.getValBajo();
-                }
-                if (this.valBajo > dest.getValBP()) {
-                    this.valBajo = dest.getValBP();
-                }
-                res.add(this);
-            } else {
-                if (this.valBajo > dest.getValBajo()) {
-                    this.valBajo = dest.getValBajo();
-                }
-                if (this.valBajo > dest.getValBP()) {
-                    this.valBajo = dest.getValBP();
-                }
-            }
-        }
-    }
-
-    private void getArticulaciones(Collection<TVertice> res, int BP){
-        this.setVisitado(true);
-        this.valBP = BP+1;
         for (TAdyacencia ady : this.adyacentes){
             TVertice dest = ady.getDestino();
             if(!dest.getVisitado()){
-                dest.setVisitado(true);
-                dest.getArticulaciones(res, valBP);
+                dest.getArticulaciones(art,cont);
+                hijos.add(dest);
+                this.valBajo = Math.min(this.getValBajo(), dest.getValBajo());
+            } else {
+                this.valBajo = Math.min(this.getValBajo(), dest.getValBP());
             }
         }
-        this.valBajo = this.getValBP();
-        for (TAdyacencia ady : this.adyacentes){
-            TVertice dest = ady.getDestino();
-            if (this.getValBP() >= dest.getValBajo()){
-                if(this.getValBajo() > dest.getValBajo()){
-                    this.valBajo = dest.getValBajo();
+        if(this.valBP > 1){
+            for(TVertice hijo : hijos) {
+                if (hijo.getValBajo() >= this.getValBP()) {
+                    art.add(this);
                 }
-                if(this.getValBajo() > dest.getValBP()){
-                    this.valBajo = dest.getValBP();
-                }
-                res.add(this);
-            } else{
-                if(this.getValBajo() > dest.getValBajo()){
-                    this.valBajo = dest.getValBajo();
-                }
-                if(this.getValBajo() > dest.getValBP()){
-                    this.valBajo = dest.getValBP();
-                }
+            }
+        } else {
+            if (hijos.size() > 1){
+                art.add(this);
             }
         }
     }
