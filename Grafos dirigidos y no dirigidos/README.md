@@ -43,48 +43,7 @@ Método adyascente obtener excentricidad
         }
     }
 ```   
-## Método bea (busqueda en amplitud)
-Se recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo.
-Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo. 
-![bea](assets/BusquedaEnAmplitud.png)
-***
-- Método a nivel del grafo
-```java
-@Override
-public Collection<TVertice> bea(Comparable etiquetaOrigen) {
-    desvisitarVertices();
-    if(this.getVertices().get(etiquetaOrigen) != null){
-        LinkedList<TVertice> recorrido = new LinkedList<>();
-        TVertice v = this.getVertices().get(etiquetaOrigen);
-        v.bea(recorrido);
-        return recorrido;
-    }
-    return null;
-}
-```
-- Método a nivel del vértice
-```java
-@Override
-public void bea(Collection<TVertice> visitados) {
-    Queue<TVertice> queue = new LinkedList<>();
-    this.setVisitado(true); // Lo visito
-    queue.add(this);
-    visitados.add(this); // Lo agrego a visitados
 
-    while(!queue.isEmpty()){
-        TVertice x = queue.poll();
-        LinkedList<TAdyacencia> adyacencias = x.getAdyacentes();
-        for(TAdyacencia y : adyacencias){
-            TVertice j = y.getDestino();
-            if(!j.getVisitado()){
-                j.setVisitado(true);
-                queue.add(j);
-                visitados.add(j);
-            }
-        }
-    }
-}
-```
 ## Método bpf (busqueda por profundidad)
 - Se puede emplear el mismo algoritmo definido para *grafos dirigidos y no dirigidos*.
 - En este caso, si el grafo es conexo, de la búsqueda en profundidad se obtiene un sólo árbol
@@ -300,6 +259,49 @@ Es un conjunto de árboles generados a partir del recorrido de un grafo.
 
 - Si (u,v) es una arista de costo mínimo tal que u pertenece a U y v pertenece a V-U, existe un AAM que incluye a (u,v) entre sus aristas.
 Dos algoritmos hacen uso de esta propiedad: Prim y Kruskal.
+
+## Método bea (busqueda en amplitud)
+Se recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo.
+Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo. 
+![bea](assets/BusquedaEnAmplitud.png)
+***
+- Método a nivel del grafo
+```java
+@Override
+public Collection<TVertice> bea(Comparable etiquetaOrigen) {
+    desvisitarVertices();
+    if(this.getVertices().get(etiquetaOrigen) != null){
+        LinkedList<TVertice> recorrido = new LinkedList<>();
+        TVertice v = this.getVertices().get(etiquetaOrigen);
+        v.bea(recorrido);
+        return recorrido;
+    }
+    return null;
+}
+```
+- Método a nivel del vértice
+```java
+@Override
+public void bea(Collection<TVertice> visitados) {
+    Queue<TVertice> queue = new LinkedList<>();
+    this.setVisitado(true); // Lo visito
+    queue.add(this);
+    visitados.add(this); // Lo agrego a visitados
+
+    while(!queue.isEmpty()){
+        TVertice x = queue.poll();
+        LinkedList<TAdyacencia> adyacencias = x.getAdyacentes();
+        for(TAdyacencia y : adyacencias){
+            TVertice j = y.getDestino();
+            if(!j.getVisitado()){
+                j.setVisitado(true);
+                queue.add(j);
+                visitados.add(j);
+            }
+        }
+    }
+}
+```
 
 ## Algoritmo de PRIM - O(n^2)
 
