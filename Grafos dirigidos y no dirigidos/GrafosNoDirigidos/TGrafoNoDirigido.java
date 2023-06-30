@@ -101,7 +101,7 @@ public class TGrafoNoDirigido extends TGrafoDirigido implements IGrafoNoDirigido
     public LinkedList<TVertice> puntosArticulacion(Comparable etOrigen) {
         desvisitarVertices();
         LinkedList<TVertice> res = new LinkedList<>();
-        vertices.get(etOrigen).getArticulaciones(res);
+        vertices.get(etOrigen).getArticulaciones(res, new int[1]);
         return res;
     }
 
