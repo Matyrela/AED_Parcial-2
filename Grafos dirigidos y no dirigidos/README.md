@@ -4,44 +4,44 @@
 ## Método centro del gráfo:
 ```java
 @Override
-    public Comparable centroDelGrafo() {
-        Comparable res = null;
-        Double minExc = Double.MAX_VALUE;
-        for (Comparable vert : vertices.keySet()){
-            Double exc = obtenerExcentricidad(vert);
-            if (exc < minExc && exc != -1){
-                res = vert;
-                minExc = exc;
-            }
+public Comparable centroDelGrafo() {
+    Comparable res = null;
+    Double minExc = Double.MAX_VALUE;
+    for (Comparable vert : vertices.keySet()){
+        Double exc = obtenerExcentricidad(vert);
+        if (exc < minExc && exc != -1){
+            res = vert;
+            minExc = exc;
         }
-        return res;
     }
+    return res;
+}
 ```
 Método adyascente obtener excentricidad
 ```java
  @Override
-    public Double obtenerExcentricidad(Comparable etiquetaVertice) {
-        Double[][] aux = this.floyd();
-        int index = 0;
-        for (Comparable vert : vertices.keySet()){
-            if(vert.equals(etiquetaVertice)){
-                break;
-            }
-            index++;
+public Double obtenerExcentricidad(Comparable etiquetaVertice) {
+    Double[][] aux = this.floyd();
+    int index = 0;
+    for (Comparable vert : vertices.keySet()){
+        if(vert.equals(etiquetaVertice)){
+            break;
         }
-        
-        Double valMax = 0.0;
-        for(int i = 0; i < vertices.keySet().size(); i++){
-            if (aux[i][index] != Double.MAX_VALUE && aux[i][index] > valMax){
-                valMax = aux[i][index];
-            }
-        }
-        if (valMax == 0){
-            return -1.0;
-        }else{
-            return valMax;
+        index++;
+    }
+    
+    Double valMax = 0.0;
+    for(int i = 0; i < vertices.keySet().size(); i++){
+        if (aux[i][index] != Double.MAX_VALUE && aux[i][index] > valMax){
+            valMax = aux[i][index];
         }
     }
+    if (valMax == 0){
+        return -1.0;
+    }else{
+        return valMax;
+    }
+}
 ```   
 
 ## Método bpf (busqueda por profundidad)
@@ -53,14 +53,14 @@ Método adyascente obtener excentricidad
 - Método a nivel del grafo
 ```java
 @Override
-    public LinkedList<TVertice> bpf(Comparable etiquetaOrigen) {
-        desvisitarVertices();
-        LinkedList<TVertice> resultado = new LinkedList();
-        TVertice origen = vertices.get(etiquetaOrigen);
-        if (origen != null){
-            origen.bpf(resultado);
-        }
-        return resultado;
+public LinkedList<TVertice> bpf(Comparable etiquetaOrigen) {
+    desvisitarVertices();
+    LinkedList<TVertice> resultado = new LinkedList();
+    TVertice origen = vertices.get(etiquetaOrigen);
+    if (origen != null){
+        origen.bpf(resultado);
+    }
+    return resultado;
 }
 ```
 - Método a nivel del vértice 
@@ -164,29 +164,29 @@ public void sortTopologico(LinkedList<TVertice> lista) {
 ## Algoritmo de FLOYD
 ```java
 @Override
-    public Double[][] floyd() {
-        Double[][] matriz = UtilGrafos.obtenerMatrizCostos(getVertices());
-        int capacidad = matriz[0].length;
-        Double[][] matrizFloyd = new Double[capacidad][capacidad];
+public Double[][] floyd() {
+    Double[][] matriz = UtilGrafos.obtenerMatrizCostos(getVertices());
+    int capacidad = matriz[0].length;
+    Double[][] matrizFloyd = new Double[capacidad][capacidad];
+    for (int i = 0; i < capacidad; i++){
+        for (int j = 0; j < capacidad; j++){
+            if (i != j){
+                matrizFloyd[i][j] = (double) (j + 1);
+            }
+        }
+    }
+    for (int k = 0; k < capacidad; k++){
         for (int i = 0; i < capacidad; i++){
             for (int j = 0; j < capacidad; j++){
-                if (i != j){
-                    matrizFloyd[i][j] = (double) (j + 1);
+                if(matriz[i][k] + matriz[k][j] < matriz[i][j]){
+                    matriz[i][j] = matriz[i][k] + matriz[k][j];
+                    matrizFloyd[i][j] = matrizFloyd[i][k];
                 }
             }
         }
-        for (int k = 0; k < capacidad; k++){
-            for (int i = 0; i < capacidad; i++){
-                for (int j = 0; j < capacidad; j++){
-                    if(matriz[i][k] + matriz[k][j] < matriz[i][j]){
-                        matriz[i][j] = matriz[i][k] + matriz[k][j];
-                        matrizFloyd[i][j] = matrizFloyd[i][k];
-                    }
-                }
-            }
-        }
-        return matrizFloyd;
     }
+    return matrizFloyd;
+}
 ```
 
 ## Algoritmo de WARSHALL
@@ -307,70 +307,70 @@ public void bea(Collection<TVertice> visitados) {
 
 ```java
 @Override
-    public TGrafoNoDirigido Prim() {
-        Collection<Comparable> V = new ArrayList<>();
-        Collection<Comparable> U = new ArrayList<>();
-        Collection<TArista> AristasAAM = new ArrayList<>();
-        double costoPrim = 0;
+public TGrafoNoDirigido Prim() {
+    Collection<Comparable> V = new ArrayList<>();
+    Collection<Comparable> U = new ArrayList<>();
+    Collection<TArista> AristasAAM = new ArrayList<>();
+    double costoPrim = 0;
 
-        for (TVertice vertice : this.getVertices().values()) {
-                V.add(vertice.getEtiqueta());
-        }
-
-        U.add(V.iterator().next());
-        V.remove(V.iterator().next());
-
-        while (V.size() != 0) {
-            TArista tempArista = this.lasAristas.buscarMin(U, V);
-            AristasAAM.add(tempArista);
-            V.remove(tempArista.getEtiquetaDestino());
-            U.add(tempArista.getEtiquetaDestino());
-            costoPrim = costoPrim + tempArista.getCosto();
-        }
-
-        Collection<TVertice> VerticesSeleccionados = new ArrayList<>();
-
-        for (Comparable vertice : U) {
-            VerticesSeleccionados.add(new TVertice(vertice));
-        }
-
-        return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
+    for (TVertice vertice : this.getVertices().values()) {
+            V.add(vertice.getEtiqueta());
     }
+
+    U.add(V.iterator().next());
+    V.remove(V.iterator().next());
+
+    while (V.size() != 0) {
+        TArista tempArista = this.lasAristas.buscarMin(U, V);
+        AristasAAM.add(tempArista);
+        V.remove(tempArista.getEtiquetaDestino());
+        U.add(tempArista.getEtiquetaDestino());
+        costoPrim = costoPrim + tempArista.getCosto();
+    }
+
+    Collection<TVertice> VerticesSeleccionados = new ArrayList<>();
+
+    for (Comparable vertice : U) {
+        VerticesSeleccionados.add(new TVertice(vertice));
+    }
+
+    return new TGrafoNoDirigido(VerticesSeleccionados, AristasAAM);
+}
 ```
 
 ## Algoritmo de Kruskal - O(a.log a)
 
 ```java
 @Override
-    public TGrafoNoDirigido Kruskal() {
-        TGrafoNoDirigido AAM = new TGrafoNoDirigido(getVertices().values(),new TAristas());
-        var aristasDesordenadas = lasAristas;
-        aristasDesordenadas.sort((TArista a1, TArista a2) -> {
-            if (a1.costo < a2.costo){
-                return -1;
-            } else if(a1.costo > a2.costo){
-                return 1;
-            } else{
-                return 0;
-            }
-        });;
-        TAristas aristasOrdenadas = new TAristas();
-        aristasOrdenadas.addAll(aristasDesordenadas);
-        int aristasAgregadas = 0;
-
-        while (aristasAgregadas != getVertices().size() - 1){
-            TArista aristaMin = aristasOrdenadas.removeFirst();
-            TVertice verticeOrigen = AAM.getVertices().get(aristaMin.getEtiquetaOrigen());
-            TVertice verticeDestino = AAM.getVertices().get(aristaMin.getEtiquetaDestino());
-            if (!AAM.estanConectados(verticeOrigen.getEtiqueta(), verticeDestino.getEtiqueta())){
-                AAM.insertarArista(aristaMin);
-                AAM.getLasAristas().add(aristaMin);
-                AAM.getLasAristas().add(aristaMin.aristaInversa());
-                aristasAgregadas++;
-            }
+public TGrafoNoDirigido Kruskal() {
+    TGrafoNoDirigido AAM = new TGrafoNoDirigido(getVertices().values(),new TAristas());
+    var aristasDesordenadas = lasAristas;
+    aristasDesordenadas.sort((TArista a1, TArista a2) -> {
+        if (a1.costo < a2.costo){
+            return -1;
+        } else if(a1.costo > a2.costo){
+            return 1;
+        } else{
+            return 0;
         }
-        return AAM;
+    });;
+    TAristas aristasOrdenadas = new TAristas();
+    aristasOrdenadas.addAll(aristasDesordenadas);
+    int aristasAgregadas = 0;
+
+    while (aristasAgregadas != getVertices().size() - 1){
+        TArista aristaMin = aristasOrdenadas.removeFirst();
+        TVertice verticeOrigen = AAM.getVertices().get(aristaMin.getEtiquetaOrigen());
+        TVertice verticeDestino = AAM.getVertices().get(aristaMin.getEtiquetaDestino());
+        if (!AAM.estanConectados(verticeOrigen.getEtiqueta(), verticeDestino.getEtiqueta())){
+            AAM.insertarArista(aristaMin);
+            AAM.getLasAristas().add(aristaMin);
+            AAM.getLasAristas().add(aristaMin.aristaInversa());
+            aristasAgregadas++;
+        }
     }
+    return AAM;
+}
 ```
 
 ## Estan Conectados
