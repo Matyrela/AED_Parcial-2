@@ -1,6 +1,6 @@
 # TODAVÍA EN PROCESO
 
-#Grafos
+# Grafos
 
 ## Excentricidad
 Es el peso máximo (o la suma de estos) de los posibles caminos desde un vértice A hacia cualquier vértice en el grafo (B, C, D o E).  
