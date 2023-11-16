@@ -31,8 +31,9 @@ C     2.0   5.0   0.0
 ### Obtener la excentricidad de A:
 
 A tiene 2 posibles caminos:  
-1. A -> B (3)  
-2. A -> C (8) (Este camino no es directo; es la suma de A -> B -> C [3 + 5])  
+1. A -> B (3)
+2. A -> C (8) (Este camino no es directo; es la suma de A -> B -> C [3 + 5])
+  
 De estos caminos, nos quedamos con el mayor, ***8***, que es nuestra excentricidad.  
 
 
