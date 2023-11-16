@@ -20,28 +20,25 @@ public Comparable centroDelGrafo() {
 Método adyascente obtener excentricidad
 ```java
  @Override
-public Double obtenerExcentricidad(Comparable etiquetaVertice) {
-    Double[][] aux = this.floyd();
-    int index = 0;
-    for (Comparable vert : vertices.keySet()){
-        if(vert.equals(etiquetaVertice)){
-            break;
+    public Comparable obtenerExcentricidad(Comparable etiquetaVertice) {
+        Double[][] aux = this.floyd();
+        int index = 0;
+        for (Comparable vert : vertices.keySet()){
+            if(vert.equals(etiquetaVertice)){
+                break;
+            }
+            index++;
         }
-        index++;
-    }
-    
-    Double valMax = 0.0;
-    for(int i = 0; i < vertices.keySet().size(); i++){
-        if (aux[i][index] != Double.MAX_VALUE && aux[i][index] > valMax){
-            valMax = aux[i][index];
+
+        Double valMax = 0.0;
+        for(int i = 0; i < vertices.keySet().size(); i++){
+            if (aux[index][i] != Double.MAX_VALUE && aux[index][i] > valMax){
+                valMax = aux[index][i];
+            }
         }
+
+        return (valMax == 0) ? -1.0 : valMax;
     }
-    if (valMax == 0){
-        return -1.0;
-    }else{
-        return valMax;
-    }
-}
 ```   
 
 ## Método bpf (busqueda por profundidad)
