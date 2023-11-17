@@ -52,11 +52,11 @@ public class TGrafoDirigido implements IGrafoDirigido {
      */
     @Override
     public boolean eliminarVertice(Comparable nombreVertice) {
-        if (nombreVertice != null) {
-            getVertices().remove(nombreVertice);
-            return getVertices().containsKey(nombreVertice);
+        for (TVertice vertice : vertices.values()) {
+            if( vertice.getEtiqueta().equals(nombreVertice)){
+                this.vertices.remove(nombreVertice);
+            }
         }
-        return false;
     }
 
     /**
@@ -322,12 +322,36 @@ public class TGrafoDirigido implements IGrafoDirigido {
 
     @Override
     public boolean tieneCiclo(Comparable etiquetaOrigen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TVertice vertV = vertices.get(etiquetaOrigen);
+        if (vertV != null) {
+            desvisitarVertices();
+            LinkedList<Comparable> camino = new LinkedList<>();
+            return vertV.tieneCiclo(camino);
+        }
+        return false;
     }
 
     @Override
     public boolean tieneCiclo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        if (vertices.isEmpty()) {
+            System.out.println(" el grafo está vacio");
+            return result;
+        }
+        desvisitarVertices();
+        for (TVertice vertV : this.vertices.values()) {
+            if (!vertV.getVisitado()) {
+                LinkedList<Comparable> camino = new LinkedList<>();
+                result = vertV.tieneCiclo(camino);
+                if (result) {
+                    return true;
+                }
+            }
+        }
+        if (!result) {
+            System.out.println("no hay ciclos");
+        }
+        return result;
     }
 
     @Override
@@ -339,7 +363,4 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return res;
     }
 
-    
-
-   
 }

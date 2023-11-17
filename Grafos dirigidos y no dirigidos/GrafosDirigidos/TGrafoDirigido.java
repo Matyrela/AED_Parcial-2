@@ -60,7 +60,11 @@ public class TGrafoDirigido implements IGrafoDirigido {
   
     @Override
     public boolean eliminarVertice(Comparable nombreVertice) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (nombreVertice != null) {
+            getVertices().remove(nombreVertice);
+            return getVertices().containsKey(nombreVertice);
+        }
+        return false;
     }
 
 

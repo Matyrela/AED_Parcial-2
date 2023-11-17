@@ -12,8 +12,6 @@ public class TArista implements IArista {
         this.costo = costo;
     }
 
-    
-    
     @Override
     public Comparable getEtiquetaOrigen() {
         return etiquetaOrigen;
