@@ -193,7 +193,12 @@ public class TVertice<T> implements IVertice {
 
     @Override
     public TVertice siguienteAdyacente(TVertice w) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TAdyacencia adyacente = buscarAdyacencia(w.getEtiqueta());
+        int index = adyacentes.indexOf(adyacente);
+        if (index + 1 < adyacentes.size()) {
+            return adyacentes.get(index + 1).getDestino();
+        }
+        return null;
     }
 
     @Override

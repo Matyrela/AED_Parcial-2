@@ -197,6 +197,32 @@ public class TClasificador {
 		return datosParaClasificar;
 	}
 
+	private void armaHeapOrdenado(int[] datosParaClasificar, int primero, int ultimo) {
+		if (primero < ultimo) {
+			int actual = primero;
+			while (actual <= ultimo / 2) {
+				if (ultimo == 2 * actual) { //r tiene un hijo solo
+					if (datosParaClasificar[actual] < datosParaClasificar[actual * 2]) {
+						intercambiar(datosParaClasificar, actual, 2 * actual);
+					}
+					actual = ultimo;
+				} else { //r tiene 2 hijos
+					int posicionIntercambio = 0;
+					if (datosParaClasificar[2 * actual] < datosParaClasificar[2 * actual + 1]) {
+						posicionIntercambio = 2 * actual + 1;
+					} else {
+						posicionIntercambio = 2 * actual;
+					}
+					if (datosParaClasificar[actual] < datosParaClasificar[posicionIntercambio]) {
+						intercambiar(datosParaClasificar, actual, posicionIntercambio);
+						actual = posicionIntercambio;
+					} else {
+						actual = ultimo;
+					}
+				}
+			}
+		}
+	}
 
 
 	//Metodo Main ------------------------------------------------------------------------------------------------------
