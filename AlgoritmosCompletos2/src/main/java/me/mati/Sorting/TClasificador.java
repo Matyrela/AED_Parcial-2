@@ -53,9 +53,21 @@ public class TClasificador {
 
 				return resultado;
 			case METODO_CLASIFICACION_HEAPINVERSO:
-				return ordenarPorHeapSortInverso(datosParaClasificar);
+				HeapSortInverso<Integer> heapSortInv = new HeapSortInverso<>();
+				Integer[] aux1 = new Integer[datosParaClasificar.length];
+				for (int i = 0; i < datosParaClasificar.length; i++) {
+					aux1[i] = Integer.valueOf(datosParaClasificar[i]);
+				}
+
+				aux1 = heapSortInv.ordenarPorHeapSort(aux1);
+
+				int[] resultado1 = new int[aux1.length];
+				for (int i = 0; i < aux1.length; i++) {
+					resultado1[i] = aux1[i].intValue();
+				}
+				return resultado1;
 			default:
-				System.err.println("Este codigo no deberia haberse ejecutado nunca. Revisa el metodo clasificar");
+				System.err.println("Este codigo no deberia haberse ejecutado nunca. Revisa el metodo , en TClasificador.java");
 				break;
 			}
 		return datosParaClasificar;

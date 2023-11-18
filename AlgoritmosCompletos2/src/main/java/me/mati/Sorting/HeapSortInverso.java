@@ -1,7 +1,7 @@
-//MAYOR A MENOR
+//MENOR A MAYOR
 package me.mati.Sorting;
 
-public class HeapSort<T extends Comparable<T>> {
+public class HeapSortInverso<T extends Comparable<T>> {
     private void intercambiar(T[] array, int i, int j) {
         T temp = array[i];
         array[i] = array[j];
@@ -14,18 +14,18 @@ public class HeapSort<T extends Comparable<T>> {
             int actual = primero;
             while (actual <= ultimo / 2) {
                 if (ultimo == 2 * actual) {
-                    if (datosParaClasificar[actual].compareTo(datosParaClasificar[actual * 2]) > 0) {
+                    if (datosParaClasificar[actual].compareTo(datosParaClasificar[actual * 2]) < 0) { // Cambio la condición
                         intercambiar(datosParaClasificar, actual, 2 * actual);
                     }
                     actual = ultimo;
                 } else {
                     int posicionIntercambio = 0;
-                    if (datosParaClasificar[2 * actual].compareTo(datosParaClasificar[2 * actual + 1]) > 0) {
+                    if (datosParaClasificar[2 * actual].compareTo(datosParaClasificar[2 * actual + 1]) < 0) { // Cambio la condición
                         posicionIntercambio = 2 * actual + 1;
                     } else {
                         posicionIntercambio = 2 * actual;
                     }
-                    if (datosParaClasificar[actual].compareTo(datosParaClasificar[posicionIntercambio]) > 0) {
+                    if (datosParaClasificar[actual].compareTo(datosParaClasificar[posicionIntercambio]) < 0) { // Cambio la condición
                         intercambiar(datosParaClasificar, actual, posicionIntercambio);
                         actual = posicionIntercambio;
                     } else {
@@ -46,4 +46,5 @@ public class HeapSort<T extends Comparable<T>> {
         }
         return datosParaClasificar;
     }
+
 }

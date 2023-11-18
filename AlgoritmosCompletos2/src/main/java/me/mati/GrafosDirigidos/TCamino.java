@@ -12,9 +12,7 @@ public class TCamino {
 
     private final TVertice origen;
     private final Collection<Comparable> otrosVertices;
-// es una lista de etiquetas de los vertices
-// ATENCIÓN: PONER LA CLASE CONCRETA QUE
-// SEA MÁS APROPIADA
+    // es una lista de etiquetas de los vertices
     private Double costoTotal;
 
     public void imprimirEtiquetasConsola() {
@@ -24,6 +22,7 @@ public class TCamino {
     public String imprimirEtiquetas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Origen: " + getOrigen().getEtiqueta());
+        System.out.println(getOtrosVertices());
         for (Comparable adyacente : getOtrosVertices()) {
             sb.append(" -> " + adyacente);
         }

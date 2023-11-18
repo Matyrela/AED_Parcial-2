@@ -28,4 +28,9 @@ public class TAdyacencia implements IAdyacencia {
         this.costo = costo;
         this.destino = destino;
     }
+
+    @Override
+    public String toString() {
+        return ("--(" + getCosto() + ")-> " + getEtiqueta());
+    }
 }

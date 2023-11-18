@@ -35,7 +35,4 @@ public class TCaminos {
     public Collection<TCamino> getCaminos() {
         return caminos;
     }
-    
-    
-    
 }

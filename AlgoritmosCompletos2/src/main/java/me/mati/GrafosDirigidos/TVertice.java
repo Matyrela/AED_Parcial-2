@@ -48,6 +48,16 @@ public class TVertice<T> implements IVertice {
         visitado = false;
     }
 
+    public void sortTopologico(LinkedList<TVertice> lista) {
+        this.setVisitado(true);
+        for (TAdyacencia ady : this.adyacentes) {
+            if (!ady.getDestino().getVisitado()) {
+                ady.getDestino().sortTopologico(lista);
+            }
+        }
+        lista.add(this);
+    }
+
     public void setVisitado(boolean valor) {
         this.visitado = valor;
     }
@@ -123,21 +133,20 @@ public class TVertice<T> implements IVertice {
 
     @Override
     public TCaminos todosLosCaminos(Comparable etVertDest, TCamino caminoPrevio, TCaminos todosLosCaminos) {
-        this.setVisitado(true);
-        for (TAdyacencia adyacencia : this.getAdyacentes()) {
-            TVertice destino = adyacencia.getDestino();
-            if (!destino.getVisitado()) {
-                if (destino.getEtiqueta().compareTo(etVertDest) == 0) {
-                    TCamino copia = caminoPrevio.copiar();
-                    copia.agregarAdyacencia(adyacencia);
+        visitado = true;
+        for(TAdyacencia adyacente : adyacentes){
+            TVertice destino = adyacente.getDestino();
+            if(!destino.getVisitado()){
+                TCamino copia = caminoPrevio.copiar();
+                copia.agregarAdyacencia(adyacente);
+                if(destino.getEtiqueta().compareTo(etVertDest) == 0){
                     todosLosCaminos.getCaminos().add(copia);
-                } else {
-                    TCamino copia = caminoPrevio.copiar();
-                    destino.todosLosCaminos(etVertDest, copia, todosLosCaminos);
+                }else{
+                    adyacente.getDestino().todosLosCaminos(etVertDest, copia, todosLosCaminos);
                 }
             }
         }
-        this.setVisitado(false);
+        visitado = false;
         return todosLosCaminos;
     }
 
@@ -233,4 +242,10 @@ public class TVertice<T> implements IVertice {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return (getEtiqueta() + ": " + getAdyacentes().toString());
+    }
+
 }

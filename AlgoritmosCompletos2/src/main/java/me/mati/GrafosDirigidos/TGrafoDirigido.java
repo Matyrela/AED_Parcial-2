@@ -61,6 +61,36 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return false;
     }
 
+    public LinkedList<TVertice> sortTopologico(Comparable vertice) {
+        //vertice tiene que ser final, no puede tener vertices incidentes
+        LinkedList<TVertice> lista = new LinkedList<TVertice>();
+        desvisitarVertices();
+        LinkedList<TVertice> verticesList = new LinkedList<TVertice>();
+        LinkedList<TArista> aristasList = new LinkedList<TArista>();
+        //invertir aristas
+        for (TVertice v : this.getVertices().values()) {
+            verticesList.add(new TVertice(v.getEtiqueta()));
+            for (Object a : v.getAdyacentes()) {
+                TAdyacencia ad = (TAdyacencia) a;
+                aristasList.add(new TArista(ad.getEtiqueta(), v.getEtiqueta(), ad.getCosto()));
+            }
+        }
+
+        TGrafoDirigido gd = new TGrafoDirigido(verticesList, aristasList);
+
+        TVertice vert = gd.buscarVertice(vertice);
+        if (vert != null) {
+            vert.sortTopologico(lista);
+            for (Map.Entry<Comparable, TVertice> entry : gd.getVertices().entrySet()) {
+                TVertice v = entry.getValue();
+                if (!v.getVisitado()) {
+                    v.sortTopologico(lista);
+                }
+            }
+        }
+        return lista;
+    }
+
     /**
      * Metodo encargado de verificar la existencia de una arista. Las etiquetas
      * pasadas por par�metro deben ser v�lidas.
@@ -193,13 +223,6 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return result;
     }
 
-    
-
-    @Override
-    public boolean tieneCiclo(TCamino camino) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public Collection<TVertice> bpf() {
        desvisitarVertices();
@@ -270,8 +293,8 @@ public class TGrafoDirigido implements IGrafoDirigido {
         
         Double valMax = 0.0;
         for(int i = 0; i < vertices.keySet().size(); i++){
-            if (aux[i][index] != Double.MAX_VALUE && aux[i][index] > valMax){
-                valMax = aux[i][index];
+            if (aux[index][i] != Double.MAX_VALUE && aux[index][i] > valMax){
+                valMax = aux[index][i];
             }
         }
         if (valMax == 0){
@@ -311,25 +334,53 @@ public class TGrafoDirigido implements IGrafoDirigido {
     @Override
     public TCaminos todosLosCaminos(Comparable etiquetaOrigen, Comparable etiquetaDestino) {
         desvisitarVertices();
-        TCaminos todosLosCaminos = new TCaminos();
-        TVertice v = buscarVertice(etiquetaOrigen);
-        if (v != null) {
-            TCamino caminoPrevio = new TCamino(v);
-            v.todosLosCaminos(etiquetaDestino, caminoPrevio, todosLosCaminos);
-            return todosLosCaminos;
-        }
-        return null;
+        TVertice origen = vertices.get(etiquetaOrigen);
+        TCamino camino = new TCamino(origen);
+        TCaminos resultado = new TCaminos();
+        origen.todosLosCaminos(etiquetaDestino, camino, resultado);
+        return resultado;
     }
 
 
     @Override
     public boolean tieneCiclo(Comparable etiquetaOrigen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TVertice vertV = vertices.get(etiquetaOrigen);
+        if (vertV != null) {
+            desvisitarVertices();
+            LinkedList<Comparable> camino = new LinkedList<>();
+            return vertV.tieneCiclo(camino);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean tieneCiclo(TCamino camino) {
+        desvisitarVertices();
+        LinkedList<Comparable> caminoAux = new LinkedList<>();
+        return camino.getOrigen().tieneCiclo(caminoAux);
     }
 
     @Override
     public boolean tieneCiclo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        if (vertices.isEmpty()) {
+            System.out.println(" el grafo está vacio");
+            return result;
+        }
+        desvisitarVertices();
+        for (TVertice vertV : this.vertices.values()) {
+            if (!vertV.getVisitado()) {
+                LinkedList<Comparable> camino = new LinkedList<>();
+                result = vertV.tieneCiclo(camino);
+                if (result) {
+                    return true;
+                }
+            }
+        }
+        if (!result) {
+            System.out.println("no hay ciclos");
+        }
+        return result;
     }
 
     @Override
@@ -340,8 +391,4 @@ public class TGrafoDirigido implements IGrafoDirigido {
         vert.bea(res);
         return res;
     }
-
-    
-
-   
 }
