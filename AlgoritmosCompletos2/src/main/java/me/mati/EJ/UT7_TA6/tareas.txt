@@ -1,0 +1,15 @@
+Inicio,0
+Tarea3,4
+Tarea4,2
+Tarea7,2
+Tarea13,1
+Tarea5,1
+Tarea10,2
+Tarea9,3
+Tarea1,2
+Tarea2,5
+Tarea11,2
+Tarea12,2
+Tarea8,3
+Tarea6,2
+Fin,0

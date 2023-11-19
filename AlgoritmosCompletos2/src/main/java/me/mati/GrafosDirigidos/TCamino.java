@@ -22,7 +22,6 @@ public class TCamino {
     public String imprimirEtiquetas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Origen: " + getOrigen().getEtiqueta());
-        System.out.println(getOtrosVertices());
         for (Comparable adyacente : getOtrosVertices()) {
             sb.append(" -> " + adyacente);
         }

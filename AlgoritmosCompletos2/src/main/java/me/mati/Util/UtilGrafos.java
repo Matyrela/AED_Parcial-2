@@ -202,8 +202,7 @@ public class UtilGrafos {
         return texto;
     }
 
-    public static <T extends IGrafoDirigido> T cargarGrafo(String nomArchVert, String nomArchAdy,
-                                                           boolean ignoreHeader, Class t  ) {
+    public static <T extends IGrafoDirigido> T cargarGrafo(String nomArchVert, String nomArchAdy, boolean ignoreHeader, Class t  ) {
 
         String[] vertices = ManejadorArchivosGenerico.leerArchivo(nomArchVert, ignoreHeader);
         String[] aristas = ManejadorArchivosGenerico.leerArchivo(nomArchAdy, ignoreHeader);
