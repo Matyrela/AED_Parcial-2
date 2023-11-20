@@ -41,7 +41,7 @@ Método adyascente obtener excentricidad
     }
 ```   
 
-## Método bpf (busqueda por profundidad)
+## Método bpf (busqueda por profundidad) | O(V+E)
 - Se puede emplear el mismo algoritmo definido para *grafos dirigidos y no dirigidos*.
 - En este caso, si el grafo es conexo, de la búsqueda en profundidad se obtiene un sólo árbol
 - Para grafos no dirigidos, hay dos clases de arcos: de árbol y de retroceso.
@@ -257,7 +257,7 @@ Es un conjunto de árboles generados a partir del recorrido de un grafo.
 - Si (u,v) es una arista de costo mínimo tal que u pertenece a U y v pertenece a V-U, existe un AAM que incluye a (u,v) entre sus aristas.
 Dos algoritmos hacen uso de esta propiedad: Prim y Kruskal.
 
-## Método bea (busqueda en amplitud)
+## Método bea (busqueda en amplitud) | O(N ^ 2)
 Se recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo.
 Luego para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo. 
 ![bea](assets/BusquedaEnAmplitud.png)
