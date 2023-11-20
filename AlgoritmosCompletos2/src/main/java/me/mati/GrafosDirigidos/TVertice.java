@@ -2,6 +2,7 @@ package me.mati.GrafosDirigidos;
 
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -240,6 +241,24 @@ public class TVertice<T> implements IVertice {
             }
         }
         return false;
+    }
+
+    public TCaminos todosLosCaminosConCosto(Comparable etVertDest, TCamino caminoPrevio, HashMap<TCamino, Integer> todosLosCaminos) {
+        visitado = true;
+        for(TAdyacencia adyacente : adyacentes){
+            TVertice destino = adyacente.getDestino();
+            if(!destino.getVisitado()){
+                TCamino copia = caminoPrevio.copiar();
+                copia.agregarAdyacencia(adyacente);
+                if(destino.getEtiqueta().compareTo(etVertDest) == 0){
+                    todosLosCaminos.getCaminos().add(copia);
+                }else{
+                    adyacente.getDestino().todosLosCaminosConCosto(etVertDest, copia, todosLosCaminos);
+                }
+            }
+        }
+        visitado = false;
+        return todosLosCaminos;
     }
 
     @Override

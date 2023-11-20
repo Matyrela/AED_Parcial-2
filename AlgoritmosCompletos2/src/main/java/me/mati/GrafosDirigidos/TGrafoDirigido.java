@@ -1,20 +1,20 @@
 package me.mati.GrafosDirigidos;
 
 
+import me.mati.GrafosNoDirigidos.TAristas;
 import me.mati.Util.UtilGrafos;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TGrafoDirigido implements IGrafoDirigido {
 
-    protected final Map<Comparable, TVertice> vertices; //lista de vertices del grafo.-
+    protected final Map<Comparable, TVertice> vertices; //lista de vertices del grafo.
+
+    private Collection<TArista> lasAristas;
     
 
     public TGrafoDirigido(Collection<TVertice> vertices, Collection<TArista> aristas) {
+        this.lasAristas = aristas;
         this.vertices = new HashMap<>();
         for (TVertice vertice : vertices) {
             insertarVertice(vertice.getEtiqueta());
@@ -22,6 +22,10 @@ public class TGrafoDirigido implements IGrafoDirigido {
         for (TArista arista : aristas) {
             insertarArista(arista);
         }
+    }
+
+    public Collection<TArista> getLasAristas() {
+        return this.lasAristas;
     }
 
     /**
@@ -159,7 +163,6 @@ public class TGrafoDirigido implements IGrafoDirigido {
                 //getLasAristas().add(arista);
                 return vertOrigen.insertarAdyacencia(arista.getCosto(), vertDestino);
             }
-
         }
         return false;
     }
@@ -390,5 +393,30 @@ public class TGrafoDirigido implements IGrafoDirigido {
         LinkedList res = new LinkedList<TVertice>();
         vert.bea(res);
         return res;
+    }
+
+    public HashMap<TCamino, Integer> todosLosCaminosConCosto(String inicio, String fin) {
+        desvisitarVertices();
+        TVertice origen = vertices.get(inicio);
+        TCamino camino = new TCamino(origen);
+        HashMap resultado = new HashMap<TCamino, Integer>();
+        origen.todosLosCaminosConCosto(fin, camino, resultado);
+        return resultado;
+    }
+
+    public TGrafoDirigido grafoinverso(){
+        Collection<TArista> Arist = new ArrayList<>();
+        for (TArista arista: getLasAristas()) {
+            Arist.add(new TArista(arista.getEtiquetaDestino(), arista.getEtiquetaOrigen(), arista.getCosto()));
+        }
+
+        Collection<TVertice> Vert = new ArrayList<>();
+        for (TVertice vertice: getVertices().values()) {
+            Vert.add(new TVertice(vertice.getEtiqueta()));
+        }
+
+        TGrafoDirigido grafodadovuelta = new TGrafoDirigido(Vert, Arist);
+
+        return grafodadovuelta;
     }
 }
