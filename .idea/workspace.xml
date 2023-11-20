@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce77fa91-1d19-410d-815e-364c3cfa5c52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AlgoritmosCompletos2/src/test/java/me/mati/GrafosDirigidos/TGrafoDirigidoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AED_Parcial-2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlgoritmosCompletos2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlgoritmosCompletos2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoritmosCompletos2/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlgoritmosCompletos2/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlgoritmosCompletos2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoritmosCompletos2/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ce77fa91-1d19-410d-815e-364c3cfa5c52" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
