@@ -12,9 +12,7 @@ public class main {
         TGrafoDirigido grafo = UtilGrafos.cargarGrafo("src/main/java/me/mati/EJ/UT7_TA6/tareas.txt", "src/main/java/me/mati/EJ/UT7_TA6/precedencias.txt", false, TGrafoDirigido.class);
 
 
-        HashMap<TCamino, Double> asd = grafo.todosLosCaminosConCosto("Inicio", "Fin");
-
-        //print Camino - Double
+        HashMap<TCamino, Double> asd =  grafo.todosLosCaminosConCosto("Inicio", "Fin");
 
         for (TCamino camino : asd.keySet()) {
             System.out.println(camino.imprimirEtiquetas() + " - " + asd.get(camino));
