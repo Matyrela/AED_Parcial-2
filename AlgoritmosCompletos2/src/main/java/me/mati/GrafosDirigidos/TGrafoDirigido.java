@@ -395,12 +395,12 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return res;
     }
 
-    public HashMap<TCamino, Integer> todosLosCaminosConCosto(String inicio, String fin) {
+    public HashMap<TCamino, Double> todosLosCaminosConCosto(String inicio, String fin) {
         desvisitarVertices();
         TVertice origen = vertices.get(inicio);
         TCamino camino = new TCamino(origen);
-        HashMap resultado = new HashMap<TCamino, Integer>();
-        origen.todosLosCaminosConCosto(fin, camino, resultado);
+        HashMap resultado = new HashMap<TCamino, Double>();
+        origen.todosLosCaminosConCosto(fin, camino, resultado, 0);
         return resultado;
     }
 

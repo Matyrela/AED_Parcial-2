@@ -243,17 +243,18 @@ public class TVertice<T> implements IVertice {
         return false;
     }
 
-    public TCaminos todosLosCaminosConCosto(Comparable etVertDest, TCamino caminoPrevio, HashMap<TCamino, Integer> todosLosCaminos) {
+    public HashMap<TCamino, Double> todosLosCaminosConCosto(Comparable etVertDest, TCamino caminoPrevio, HashMap<TCamino, Double> todosLosCaminos, double costoActual) {
         visitado = true;
-        for(TAdyacencia adyacente : adyacentes){
+        for(TAdyacencia adyacente : adyacentes) {
             TVertice destino = adyacente.getDestino();
-            if(!destino.getVisitado()){
+            if(!destino.getVisitado()) {
                 TCamino copia = caminoPrevio.copiar();
                 copia.agregarAdyacencia(adyacente);
-                if(destino.getEtiqueta().compareTo(etVertDest) == 0){
-                    todosLosCaminos.getCaminos().add(copia);
-                }else{
-                    adyacente.getDestino().todosLosCaminosConCosto(etVertDest, copia, todosLosCaminos);
+                double nuevoCosto = costoActual + adyacente.getCosto();
+                if(destino.getEtiqueta().compareTo(etVertDest) == 0) {
+                    todosLosCaminos.put(copia, nuevoCosto);
+                } else {
+                    adyacente.getDestino().todosLosCaminosConCosto(etVertDest, copia, todosLosCaminos, nuevoCosto);
                 }
             }
         }
