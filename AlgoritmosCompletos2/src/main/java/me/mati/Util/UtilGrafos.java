@@ -3,13 +3,10 @@ package me.mati.Util;
 
 import me.mati.GrafosDirigidos.IGrafoDirigido;
 import me.mati.GrafosDirigidos.TArista;
+import me.mati.GrafosDirigidos.TCamino;
 import me.mati.GrafosDirigidos.TVertice;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -229,5 +226,13 @@ public class UtilGrafos {
             Logger.getLogger(UtilGrafos.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return null;
+    }
+
+    public static void ImprimirTodosLosCostosConsola(HashMap<TCamino, Double> caminosConCosto){
+        for (Map.Entry<TCamino, Double> entry : caminosConCosto.entrySet()) {
+            TCamino key = entry.getKey();
+            Double value = entry.getValue();
+            System.out.println(key.imprimirEtiquetas() + " : " + value);
+        }
     }
 }
